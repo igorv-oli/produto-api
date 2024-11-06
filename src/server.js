@@ -4,12 +4,14 @@ const { Pool } = require('pg');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const cors = require("cors");
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
 app.use(express.json());
+app.use(cors());
 
 pool.connect((err, client, release) => {
     if (err) {
